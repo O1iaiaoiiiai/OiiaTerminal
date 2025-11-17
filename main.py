@@ -1,6 +1,24 @@
 import smtplib
 from email.mime.text import MIMEText
 
+def mailcustom(addrfrom, to, subject, body):
+    MAIL_SERVER = "192.168.1.100"  # Your custom server IP
+    MAIL_PORT = 25  # or 465 for SSL, 25 for unencrypted
+    MAIL_USER = "your-username"
+    MAIL_PASSWORD = "your-password"
+
+    msg = MIMEText("Email body")
+    msg['Subject'] = "Test Email"
+    msg['From'] = "sender@yourdomain.com"
+    msg['To'] = "recipient@example.com"
+
+    # Connect to custom mail server (TLS)
+    with smtplib.SMTP(MAIL_SERVER, MAIL_PORT) as server:
+        server.starttls()  # Upgrade to encrypted connection
+        server.login(MAIL_USER, MAIL_PASSWORD)
+        server.send_message(msg)
+        print("Email sent via custom server!")
+
 def mailgmail(address, password, subject, body, to_address):
     # Gmail SMTP settings
     GMAIL_ADDRESS = address
