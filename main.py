@@ -43,3 +43,4 @@ def checkprompt(prompt):
         mailgmail(emailaddr, app_password, subj, body, to)
 while True:
     prompt = input(f"{name},{emailaddr}*Oiia>")
+    checkprompt(prompt)
